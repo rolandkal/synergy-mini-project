@@ -2,12 +2,24 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Synergy Mini Project{% endblock %}</title>
+        {% block stylesheets %}
+		    {% stylesheets '@AppBundle/Resources/assets/scss/*.scss' output='css/main.css' filter='compass' %}
+		        <link rel="stylesheet" href="{{ asset_url }}" />
+		    {% endstylesheets %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    	<div class="container">
+			<div class="container-inner">	
+	        {% block body %}{% endblock %}
+			{% block javascripts %}
+				{% javascripts '@all_js' output='js/script.js'%}
+			        <script src="{{ asset_url }}"></script>
+			    {% endjavascripts %}
+			{% endblock %}
+			</div>
+		</div>
     </body>
 </html>

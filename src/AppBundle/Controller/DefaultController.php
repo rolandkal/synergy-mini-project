@@ -8,10 +8,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/app/example", name="homepage")
+     * @Route("/", name="homepage")
      */
     public function indexAction()
     {
         return $this->render('default/index.html.twig');
     }
+    
+    /**
+     * @Route("/grid", name="grid")
+     */
+    public function gridAction()
+    {
+        return $this->render('default/grid.html.twig');
+    }
+
 }
