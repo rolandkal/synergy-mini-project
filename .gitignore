@@ -1,5 +1,5 @@
 # Other files
-.* 
+.*
 !/.gitignore
 /cgi-bin/
 /fcgi-bin/
@@ -39,5 +39,5 @@
 /app/phpunit.xml
 /phpunit.xml
 
-# Composer PHAR
+# Composer
 /composer.phar
