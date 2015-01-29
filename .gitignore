@@ -1,3 +1,12 @@
+# Other files
+.* 
+!/.gitignore
+/cgi-bin/
+/fcgi-bin/
+/tmp/
+/logs/
+/homes/
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
