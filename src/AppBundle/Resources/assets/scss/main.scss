@@ -1,7 +1,67 @@
 @import "modules/bourbon/bourbon"; 
 @import "modules/normalize/normalize"; 
-//@import "modules/neat/neat"; 
+@import "modules/grid_settings"; 
+@import "modules/neat/neat"; 
+
+html, body, .container, .container-inner{
+	height:100%;
+}
 
 .container{
-	background: blue;
+
+	background: grey;
+	
+	
+	.container-inner{
+		@include clearfix;
+		@include outer-container;	
+		
+		background: white;
+		
+		.top{
+			padding: 25px;
+			.top-inner{
+				
+				
+			}
+			
+		}
+		
+		.grid{
+			padding:25px;
+			.grid-inner{
+				.row{
+					@include row(table);
+					.block{
+						$span: 5;
+						$columns: nth($span,1);
+						$container-columns: container-span($span);
+						@include span-columns(5,table);
+						height: percentage($columns / $container-columns);
+						//@include reset-display;
+						//@include pad(); 
+						
+						height:150px;
+					
+						
+						//border-left: 1px solid gray;
+						&:nth-child(odd){
+							
+							background: red;
+						}
+			
+						
+					}
+					
+				}
+
+			
+				
+			}
+		}
+		
+
+		
+	}
 }
+
