@@ -3,65 +3,157 @@
 @import "modules/grid_settings"; 
 @import "modules/neat/neat"; 
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+$grid-border: 1px solid #ddd;
+
 html, body, .container, .container-inner{
 	height:100%;
+	font-family: 'Open Sans',Tahoma, sans-serif;
 }
 
 .container{
-
 	background: grey;
-	
 	
 	.container-inner{
 		@include clearfix;
 		@include outer-container;	
-		
+		padding: 15px;
 		background: white;
 		
 		.top{
-			padding: 25px;
+			padding: 10px;
+			min-height: 300px;
 			.top-inner{
+				@include clearfix;
 				
+				.logo{
+					float: left;
+					width: 40%;
+					margin-bottom: 50px;
+					
+					img{
+						display: block;
+						width: 100%;
+						max-width: 300px;
+						margin: 0 auto;	
+					}
+				}
+				.tools{
+					width: 60%;
+					float: right;
+					margin-bottom: 50px;
+				
+					
+					.row{
+						@include row(table);
+							
+						.block{
+							@include span-columns(3, table);
+
+							vertical-align: middle;
+							text-align: center;
+													
+							.snap{
+								width: 80%;
+
+								display: block;
+								margin: 0 auto;
+								
+								.computer{
+									width: 100%;
+									height: 100%;
+									
+									svg{ 
+										width: 70%;
+										height: 70%;
+									}
+									i.remove{ display:none; }
+									
+								}
+	
+							}
+		
+						}
+					
+					
+					}
+				}
+				h1{
+					text-align: center;
+					clear:both;
+					
+				}
 				
 			}
-			
 		}
 		
 		.grid{
-			padding:25px;
+			@include border-top-radius(15px);
+			@include border-bottom-radius(15px);
+			border: $grid-border;
+			padding:10px;
+			
+			
 			.grid-inner{
 				.row{
 					@include row(table);
 					.block{
-						$span: 5;
-						$columns: nth($span,1);
-						$container-columns: container-span($span);
-						@include span-columns(5,table);
-						height: percentage($columns / $container-columns);
-						//@include reset-display;
-						//@include pad(); 
-						
+						@include span-columns(5, table);
 						height:150px;
-					
+						vertical-align: middle;
+						text-align: center;
 						
-						//border-left: 1px solid gray;
-						&:nth-child(odd){
-							
-							background: red;
+						&:nth-child(even){
+							border-left: $grid-border;
+							border-right: $grid-border;
 						}
-			
+												
+						.snap{
+							width: 80%;
+							height: 80%;
+							display: block;
+							margin: 0 auto;
+							
+							.computer{
+								width: 100%;
+								height: 100%;
+								position: relative;
+								
+								i.remove{
+									position: absolute;
+									font-style: normal;
+									font-size: 30px;
+									color: #FF0A0A;
+									top: -18px;
+									right: -18px;
+									cursor: pointer;
+									&:after{
+										content:"\2298";
+										display:block;
+										clear: both;
+									}
+
+								}
+							}
+							&.highlight{
+								background: rgba(247, 255, 0, .1);
+							}
+
+						}
+						
+
 						
 					}
+					&:nth-child(even){
+						border-top: $grid-border;
+						border-bottom: $grid-border;
+					}
 					
-				}
-
-			
-				
+				}			
 			}
 		}
-		
-
-		
+				
 	}
 }
 

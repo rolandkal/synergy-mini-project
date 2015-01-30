@@ -4,19 +4,36 @@
 
 	<div class="top">
 		<div class="top-inner">
-			{% image '@AppBundle/Resources/assets/img/logo-large.png' %}
-			    <img src="{{ asset_url }}" alt="Example" />
-			{% endimage %}
+			<div class="logo">
+				{% image '@AppBundle/Resources/assets/img/logo-large.png' %}
+				    <img src="{{ asset_url }}" alt="Example" />
+				{% endimage %}
+			</div>
+			<div class="tools">
+				<div class="row">
+			    {% for k, l in computers %}
+			    	<div class="block">
+				    	<div class="snap">
+				    		<div class="computer parent" data-computer-type="{{ k }}">
+				    			{{ l | raw}}
+				    			<i class="remove"></i>
+							</div>
+				    	
+				    	</div>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+			<h1>Build your Synergy configuration online!</h1>
 		</div>
 	</div>
-	
 	<div class="grid">
 		<div class="grid-inner">
-		
-		{% for r in 1..3 %}
+		{% for r in 1..grid.rows %}
 			<div class="row row-{{ r }}">
-		    {% for b in 1..5 %}
-		    	<div class="block block-{{ r }}{{ b }}">
+		    {% for s in 1..grid.columns %}
+		    	<div class="block">
+			    	<div class="snap snap-{{ r }}{{ s }}">
 				</div>
 			{% endfor %}
 			</div>
