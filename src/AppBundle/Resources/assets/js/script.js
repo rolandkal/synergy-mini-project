@@ -8,10 +8,59 @@
 			$hostname = $('#hostname'),
 			conf = {};
 	
-		function adjustBlocks($blocks){
-		 $blocks.height($blocks.width())
+		function sendConf(){
+			var textfile = null,
+				texttowrite = "";
+
+
+			if(jQuery.isEmptyObject(conf)) return;
+			
+			// Screens section
+			texttowrite += 'section: screens\n';			
+			for (var name in conf) {
+			   texttowrite += '\t'+name+':\n';			
+			}
+			texttowrite += 'end\n';	
+			
+			// Links section
+			texttowrite += 'section: links\n';			
+			for (var name in conf) {	
+				 var position = conf[name];
+				 texttowrite += '\t'+name+':\n';
+
+				 for (var n1 in conf){
+				 	if(conf[n1] == position-1)
+				 		texttowrite += '\t\tleft: '+n1+'\n';
+				 	if(conf[n1] == position+1)
+				 		texttowrite += '\t\tright: '+n1+'\n';
+				 	if(conf[n1] == position-10)
+				 		texttowrite += '\t\tdown: '+n1+'\n';
+				 	if(conf[n1] == position+1)
+				 		texttowrite += '\t\tup: '+n1+'\n';
+				 }
+				
+
+			}
+			texttowrite += 'end';	
+			
+			var content = new Blob([texttowrite], {type: 'text/plain'});
+
+			if (textfile !== null) {
+		      window.URL.revokeObjectURL(textfile);
+		    }
+
+		    textfile = window.URL.createObjectURL(content);
+
+
+			window.open(textfile, '_blank');
+			
+		    //return textfile;
 		}
-		
+
+		function adjustBlocks($blocks){
+			 $blocks.height($blocks.width());
+		}
+	
 		function moveComputer( $target, $item, $hostname ) {
 		  $target.droppable('option', 'accept', $item);
 		  if($item.hasClass('parent')){
@@ -74,8 +123,7 @@
 		
 		$('#getconf').on('click', function(e){
 			e.preventDefault;
-			console.log(conf);
-			
+			sendConf();
 		})
 	
 		
