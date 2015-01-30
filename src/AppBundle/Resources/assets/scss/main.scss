@@ -23,7 +23,7 @@ html, body, .container, .container-inner{
 		
 		.top{
 			padding: 10px;
-			min-height: 300px;
+			min-height: 250px;
 			.top-inner{
 				@include clearfix;
 				
@@ -47,6 +47,7 @@ html, body, .container, .container-inner{
 					
 					.row{
 						@include row(table);
+						margin-bottom: 20px;
 							
 						.block{
 							@include span-columns(3, table);
@@ -78,11 +79,19 @@ html, body, .container, .container-inner{
 					
 					
 					}
+					input#hostname{ 
+						float: right;
+						min-width: 200px;
+						
+					}
 				}
 				h1{
 					text-align: center;
 					clear:both;
 					
+				}
+				button{
+					float:right;
 				}
 				
 			}
@@ -93,7 +102,6 @@ html, body, .container, .container-inner{
 			@include border-bottom-radius(15px);
 			border: $grid-border;
 			padding:10px;
-			
 			
 			.grid-inner{
 				.row{

@@ -14,26 +14,29 @@
 			    {% for k, l in computers %}
 			    	<div class="block">
 				    	<div class="snap">
-				    		<div class="computer parent" data-computer-type="{{ k }}">
+				    		<div class="computer parent" data-type="{{ k }}">
 				    			{{ l | raw}}
 				    			<i class="remove"></i>
+				    			<span class="title"></span>
 							</div>
-				    	
 				    	</div>
 					</div>
 				{% endfor %}
 				</div>
+				<input name="hostname" id="hostname" placeholder="Hostname" value="" />
+				
 			</div>
 			<h1>Build your Synergy configuration online!</h1>
+			<button name="getconf" id="getconf">Get Configuration File</button>
 		</div>
 	</div>
 	<div class="grid">
 		<div class="grid-inner">
 		{% for r in 1..grid.rows %}
-			<div class="row row-{{ r }}">
+			<div class="row">
 		    {% for s in 1..grid.columns %}
 		    	<div class="block">
-			    	<div class="snap snap-{{ r }}{{ s }}">
+			    	<div class="snap" data-position="{{ r }}{{ s }}"></div>
 				</div>
 			{% endfor %}
 			</div>
